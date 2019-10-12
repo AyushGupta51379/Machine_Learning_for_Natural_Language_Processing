@@ -1,0 +1,14 @@
+>>> 
+ RESTART: C:/Users/AYUSH GUPTA/OneDrive/HKUST COURSES/3Y1/math 4824B/lab 3/20384050_lab3.py 
+[('this is a foo bar', array([1, 1, 1, 0, 0, 1, 1, 0])), ('foo bar bar black sheep', array([0, 0, 0, 0, 1, 1, 2, 1])), ('this is a sentence', array([1, 1, 1, 1, 0, 0, 0, 0]))]
+['this', 'a', 'is', 'sentence', 'black', 'foo', 'bar', 'sheep']
+Test BOW cosine similarity
+1.0000 0.5071 0.6708 
+0.5071 1.0000 0.0000 
+0.6708 0.0000 1.0000 
+
+Test tfidf cosine similarity
+[('this is a foo bar', array([0.3, 0.3, 0.3, 0. , 0. , 0.3, 0.3, 0. ])), ('foo bar bar black sheep', array([0. , 0. , 0. , 0. , 0.6, 0.3, 0.6, 0.6])), ('this is a sentence', array([0.375, 0.375, 0.375, 0.75 , 0.   , 0.   , 0.   , 0.   ]))]
+1.0000 0.3721 0.5071 
+0.3721 1.0000 0.0000 
+0.5071 0.0000 1.0000 

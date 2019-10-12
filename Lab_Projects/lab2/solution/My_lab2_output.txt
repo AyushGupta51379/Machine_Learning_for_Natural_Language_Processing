@@ -1,0 +1,32 @@
+>>> 
+ RESTART: C:/Users/AYUSH GUPTA/OneDrive/HKUST COURSES/3Y1/math 4824B/lab 2/20384050_lab2.py 
+q1: 
+141576
+6403
+[ Sense and Sensibility by Jane Austen 1811 ]
+
+q2: 
+, : 3899
+. : 3736
+the : 2988
+and : 1905
+to : 1517
+a : 1383
+of : 1202
+he : 1068
+`` : 1045
+'' : 1044
+
+              ring activities       love     sports     church 
+romance          2          1         36          3         29 
+hobbies         11         11          8         12          3 
+   news          5          9          3         10         33 
+
+q3: 
+dictionary lexicon
+
+bilingual_dictionary desk_dictionary collegiate_dictionary etymological_dictionary gazetteer learner's_dictionary school_dictionary pocket_dictionary little_dictionary spell-checker spelling_checker unabridged_dictionary unabridged
+
+[3.6375861597263857, 0.5020919437972361, 2.2512917986064953, 1.072636802264849]
+
+[('right_whale.n.01', 3.6375861597263857), ('minke_whale.n.01', 2.2512917986064953), ('tortoise.n.01', 1.072636802264849), ('novel.n.01', 0.5020919437972361)]
