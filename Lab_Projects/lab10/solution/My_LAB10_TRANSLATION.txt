@@ -1,0 +1,439 @@
+=== RESTART: C:\Users\AYUSH GUPTA\Downloads\lab 10\lab10\lab10_skeleton.py ===
+Using TensorFlow backend.
+Loading data
+encoder_input_train.shape (12244, 10)
+decoder_input_train.shape (12244, 10)
+Vocab Size 3243
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 10)           0                                            
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 10)           0                                            
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 10, 100)      324300      input_1[0][0]                    
+                                                                 input_2[0][0]                    
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 10, 100)      0           embedding_1[0][0]                
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 10, 200)      120600      dropout_1[0][0]                  
+__________________________________________________________________________________________________
+dropout_2 (Dropout)             (None, 10, 200)      0           bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+bidirectional_2 (Bidirectional) [(None, 10, 200), (N 180600      dropout_2[0][0]                  
+__________________________________________________________________________________________________
+dropout_3 (Dropout)             (None, 10, 100)      0           embedding_1[1][0]                
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 200)          0           bidirectional_2[0][1]            
+                                                                 bidirectional_2[0][2]            
+__________________________________________________________________________________________________
+gru_3 (GRU)                     (None, 10, 200)      180600      dropout_3[0][0]                  
+                                                                 concatenate_1[0][0]              
+__________________________________________________________________________________________________
+dot_1 (Dot)                     (None, 10, 10)       0           gru_3[0][0]                      
+                                                                 bidirectional_2[0][0]            
+__________________________________________________________________________________________________
+activation_1 (Activation)       (None, 10, 10)       0           dot_1[0][0]                      
+__________________________________________________________________________________________________
+dot_2 (Dot)                     (None, 10, 200)      0           activation_1[0][0]               
+                                                                 bidirectional_2[0][0]            
+__________________________________________________________________________________________________
+concatenate_2 (Concatenate)     (None, 10, 400)      0           gru_3[0][0]                      
+                                                                 dot_2[0][0]                      
+__________________________________________________________________________________________________
+time_distributed_1 (TimeDistrib (None, 10, 3243)     1300443     concatenate_2[0][0]              
+==================================================================================================
+Total params: 2,106,543
+Trainable params: 2,106,543
+Non-trainable params: 0
+__________________________________________________________________________________________________
+None
+Traning Model...
+Epoch 1/20
+ - 92s - loss: 3.8284
+
+Warning (from warnings module):
+  File "C:\Users\AYUSH GUPTA\AppData\Roaming\Python\Python36\site-packages\nltk\translate\bleu_score.py", line 503
+    warnings.warn(_msg)
+UserWarning: 
+The hypothesis contains 0 counts of 2-gram overlaps.
+Therefore the BLEU score evaluates to 0, independently of
+how many N-gram overlaps of lower order it contains.
+Consider using lower n-gram order or use SmoothingFunction()
+
+Warning (from warnings module):
+  File "C:\Users\AYUSH GUPTA\AppData\Roaming\Python\Python36\site-packages\nltk\translate\bleu_score.py", line 503
+    warnings.warn(_msg)
+UserWarning: 
+The hypothesis contains 0 counts of 3-gram overlaps.
+Therefore the BLEU score evaluates to 0, independently of
+how many N-gram overlaps of lower order it contains.
+Consider using lower n-gram order or use SmoothingFunction()
+
+Warning (from warnings module):
+  File "C:\Users\AYUSH GUPTA\AppData\Roaming\Python\Python36\site-packages\nltk\translate\bleu_score.py", line 503
+    warnings.warn(_msg)
+UserWarning: 
+The hypothesis contains 0 counts of 4-gram overlaps.
+Therefore the BLEU score evaluates to 0, independently of
+how many N-gram overlaps of lower order it contains.
+Consider using lower n-gram order or use SmoothingFunction()
+Validation Set BLEU: 0.004851
+Top | BLEU | target               | output              
+0   |1.0000| i m not <unk> . | i m not <unk> .
+1   |1.0000| i m not <unk> . | i m not <unk> .
+2   |1.0000| i m not <unk> . | i m not <unk> .
+124 |0.0000| i m not thinking about it . | i m not to <unk> .
+246 |0.0000| i m fascinated . | i m very .
+368 |0.0000| she screamed with <unk> . | he is a <unk> .
+490 |0.0000| i m sorry i said that . | i m not to to <unk> .
+612 |0.0000| i m so proud of you . | i m not to <unk> .
+734 |0.0000| i m sure she ll leave early . | i m not a <unk> .
+856 |0.0000| you are always welcome . | you re not <unk> .
+978 |0.0000| they re all gone . | we re a .
+1100|0.0000| i m using that cup . | you re not <unk> .
+1222|0.0000| you re one of them aren t you ? | i m not a <unk> .
+1224|0.0000| he is here ! | we re a .
+Epoch 2/20
+ - 62s - loss: 2.4318
+Validation Set BLEU: 0.025643
+Top | BLEU | target               | output              
+0   |1.0000| you re very timid . | you re very timid .
+1   |1.0000| you re very good . | you re very good .
+2   |1.0000| you re very good . | you re very good .
+124 |0.0000| i m not your brother . | i m not not <unk> .
+246 |0.0000| i m <unk> . | i m a <unk> .
+368 |0.0000| you re so picky . | you re very good .
+490 |0.0000| i m all confused . | i m not <unk> .
+612 |0.0000| i m saving this <unk> for tom . | i m a <unk> of the <unk> .
+734 |0.0000| i m aware of all that . | i m sorry to see i am .
+856 |0.0000| i m surprised to see you . | i m not happy .
+978 |0.0000| he s <unk> in the park . | he is a <unk> of the <unk> .
+1100|0.0000| she is missing the point . | he is a <unk> .
+1222|0.0000| i am going to leave my present job . | i m a <unk> .
+1224|0.0000| i am allowed to swim in the river . | i m a <unk> .
+Epoch 3/20
+ - 62s - loss: 2.0441
+Validation Set BLEU: 0.041580
+Top | BLEU | target               | output              
+0   |1.0000| you re the one who trained me . | you re the one who trained me .
+1   |1.0000| you re the one who trained me . | you re the one who trained me .
+2   |1.0000| you re so sweet . | you re so sweet .
+124 |0.0000| i m not joking . | i m not going .
+246 |0.0000| i m not good at fishing . | i m not a <unk> .
+368 |0.0000| we re dying . | we re <unk> .
+490 |0.0000| you re in love . | you re very funny .
+612 |0.0000| she is certainly over forty . | she is <unk> to <unk> .
+734 |0.0000| i m more than happy . | i m glad to see you .
+856 |0.0000| i m doing the right thing . | i m going to be a <unk> .
+978 |0.0000| i m sorry my father is out . | i m not a <unk> .
+1100|0.0000| you are right in a way . | i m glad you re all .
+1222|0.0000| they are willing to help us out . | they re all <unk> .
+1224|0.0000| we are sure of his success . | we re <unk> .
+Epoch 4/20
+ - 59s - loss: 1.7815
+Validation Set BLEU: 0.068415
+Top | BLEU | target               | output              
+0   |1.0000| you re very talented . | you re very talented .
+1   |1.0000| you re very busy . | you re very busy .
+2   |1.0000| you re the one who trained me . | you re the one who trained me .
+124 |0.3303| i m going to need you . | i m going to see you re <unk> .
+246 |0.0000| we re not desperate yet . | we re not not <unk> .
+368 |0.0000| i m not breaking the law . | i m not going to <unk> you .
+490 |0.0000| i m innocent . | i m <unk> .
+612 |0.0000| i m busy . | i m very <unk> .
+734 |0.0000| you re my best customer . | you re the one of <unk> .
+856 |0.0000| he is mad about music . | he is a talented .
+978 |0.0000| he is old enough to drive a car . | he is <unk> in the <unk> <unk> .
+1100|0.0000| he s after me . | he is <unk> <unk> <unk> .
+1222|0.0000| he s a famous popular singer in japan . | he is a <unk> man .
+1224|0.0000| we are faced with a host of problems . | we re <unk> <unk> .
+Epoch 5/20
+ - 61s - loss: 1.5783
+Validation Set BLEU: 0.105258
+Top | BLEU | target               | output              
+0   |1.0000| you re very timid . | you re very timid .
+1   |1.0000| you re very timid . | you re very timid .
+2   |1.0000| you re very talented . | you re very talented .
+124 |0.4889| i m not a violent person . | i m not a good person .
+246 |0.0000| we re a team . | we re a <unk> .
+368 |0.0000| you re going too far . | you re going to miss you .
+490 |0.0000| you re pretty . | you re silly .
+612 |0.0000| i m reading the <unk> . | i m <unk> <unk> .
+734 |0.0000| we re aware of the problem . | we re in the same age .
+856 |0.0000| he is off today . | he is <unk> in the <unk> .
+978 |0.0000| you re all i ve got . | you re so tired of what that i am
+1100|0.0000| they are my friends . | they re <unk> <unk> .
+1222|0.0000| you are always as busy as a bee . | you re not my friend .
+1224|0.0000| he s waiting for you at home . | he is not <unk> .
+Epoch 6/20
+ - 61s - loss: 1.4089
+Validation Set BLEU: 0.147340
+Top | BLEU | target               | output              
+0   |1.0000| you re very upset . | you re very upset .
+1   |1.0000| you re very upset . | you re very upset .
+2   |1.0000| you re very understanding . | you re very understanding .
+124 |0.6435| she s too old for you . | she is too old for you .
+246 |0.3156| i m the youngest child . | i m the youngest one of my father .
+368 |0.0000| i m not old enough . | i m not your enemy .
+490 |0.0000| i m very grateful for your help . | i m very proud of that .
+612 |0.0000| i m retired . | i m exhausted .
+734 |0.0000| you re right on time . | you re free of booze .
+856 |0.0000| we re here with our children . | we re all in all <unk> .
+978 |0.0000| i m doing the right thing . | i m <unk> a <unk> .
+1100|0.0000| he s such a great guy . | he is a very nice person .
+1222|0.0000| you are in a safe place . | you re free .
+1224|0.0000| you are trusted by every one of us . | you re all safe .
+Epoch 7/20
+ - 62s - loss: 1.2608
+Validation Set BLEU: 0.182161
+Top | BLEU | target               | output              
+0   |1.0000| you re very upset . | you re very upset .
+1   |1.0000| you re very upset . | you re very upset .
+2   |1.0000| you re very talented . | you re very talented .
+124 |1.0000| i m glad to see you here . | i m glad to see you here .
+246 |0.4347| i m sick of lying . | i m sick of your complaints .
+368 |0.0000| i m still busy . | i m still here .
+490 |0.0000| we re not friends anymore . | we re not a teenager girl .
+612 |0.0000| you re faithful . | you re wrong .
+734 |0.0000| they re too fat . | they re very cheerful .
+856 |0.0000| i m home all the time . | i m sure of the <unk> .
+978 |0.0000| i am going to leave my present job . | i m going to <unk> my <unk> .
+1100|0.0000| she s <unk> the water . | she is <unk> to him .
+1222|0.0000| he s always running short of <unk> . | he is always complaining .
+1224|0.0000| you are trusted by every one of us . | you re both wrong .
+Epoch 8/20
+ - 62s - loss: 1.1334
+Validation Set BLEU: 0.225778
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re very upset . | you re very upset .
+124 |1.0000| i m very glad to see you again . | i m very glad to see you again .
+246 |0.5373| you re a wonderful friend . | you re a wonderful woman .
+368 |0.0000| you re very generous . | you re very attractive .
+490 |0.0000| i m living with my parents . | i m taking my parents .
+612 |0.0000| i m not totally convinced of that . | i m not ready to go .
+734 |0.0000| i m free ! | i m tired !
+856 |0.0000| i m tough . | i m in a <unk> .
+978 |0.0000| he is accustomed to the work . | he is used to speaking .
+1100|0.0000| we are brothers . | we re reliable .
+1222|0.0000| he is a <unk> idiot . | i m in luck .
+1224|0.0000| we are badly in want of water . | we re not late .
+Epoch 9/20
+ - 61s - loss: 1.0234
+Validation Set BLEU: 0.273987
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re very upset . | you re very upset .
+124 |1.0000| we re <unk> . | we re <unk> .
+246 |1.0000| i m <unk> . | i m <unk> .
+368 |0.4347| he is very kind to me . | he is very kind of cute .
+490 |0.0000| i m not understanding anything . | i m not <unk> anything .
+612 |0.0000| he is a man of reason . | he s a man of the field .
+734 |0.0000| i m sneaky . | i m exhausted .
+856 |0.0000| she is missing the point . | she is <unk> to me .
+978 |0.0000| we re aware of the problem . | we re the same age .
+1100|0.0000| you are drunk ! | you re nuts !
+1222|0.0000| i m good at playing the piano . | he s <unk> to me .
+1224|0.0000| you re out of time . | i m <unk> .
+Epoch 10/20
+ - 65s - loss: 0.9257
+Validation Set BLEU: 0.326894
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re weak . | you re weak .
+2   |1.0000| you re very upset . | you re very upset .
+124 |1.0000| we re not done yet . | we re not done yet .
+246 |1.0000| i m not crazy . | i m not crazy .
+368 |0.5373| you re free to go . | you are free to go .
+490 |0.0000| you re very direct . | you re very timid .
+612 |0.0000| i m not good at fishing . | i m not a good singer .
+734 |0.0000| he s <unk> an apple . | he s painting a apple .
+856 |0.0000| we re really drunk . | we re very different .
+978 |0.0000| you re like an old woman . | you re the woman in my family .
+1100|0.0000| she served me coffee . | she suddenly kissed me .
+1222|0.0000| i m good at playing the piano . | he s here to protect it .
+1224|0.0000| you are trusted by every one of us . | you re free to go .
+Epoch 11/20
+ - 68s - loss: 0.8411
+Validation Set BLEU: 0.372859
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re welcome . | you re welcome .
+124 |1.0000| you re <unk> . | you re <unk> .
+246 |1.0000| i m sorry if i disturbed you . | i m sorry if i disturbed you .
+368 |1.0000| he s broke . | he s broke .
+490 |0.4347| they re going to make mistakes . | they re going to be gone .
+612 |0.0000| i m not <unk> . | i m not a <unk> .
+734 |0.0000| i m glad that you can come . | i m glad you liked it .
+856 |0.0000| i am weak . | i m weak .
+978 |0.0000| i m available now . | i m busy .
+1100|0.0000| he is coming to see me tomorrow afternoon . | he is afraid of his work .
+1222|0.0000| you are trusted by every one of us . | you re free to go .
+1224|0.0000| we are badly in want of water . | we re really late .
+Epoch 12/20
+ - 61s - loss: 0.7688
+Validation Set BLEU: 0.407489
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re weak . | you re weak .
+124 |1.0000| you re all fired . | you re all fired .
+246 |1.0000| i m the same height as tom is . | i m the same height as tom is .
+368 |1.0000| i m afraid of heights . | i m afraid of heights .
+490 |0.5373| i m not like them . | i m not like that .
+612 |0.0000| we re completely lost . | we re completely <unk> .
+734 |0.0000| i m feeling fit . | i m feeling stressed in trouble .
+856 |0.0000| i m unbiased . | i m <unk> .
+978 |0.0000| i m more experienced than tom . | i m glad tom s <unk> .
+1100|0.0000| she smiled <unk> . | she <unk> him .
+1222|0.0000| he is full of ambition . | he s unambitious .
+1224|0.0000| we are badly in want of water . | we re really angry .
+Epoch 13/20
+ - 64s - loss: 0.7017
+Validation Set BLEU: 0.432695
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re welcome . | you re welcome .
+124 |1.0000| you re ambitious . | you re ambitious .
+246 |1.0000| she is never on time . | she is never on time .
+368 |1.0000| i m happy with it . | i m happy with it .
+490 |0.6102| i m sure that tom will come tomorrow . | i m sure tom will come tomorrow .
+612 |0.0000| you re very timid . | you re very emotional .
+734 |0.0000| you re not yourself today . | you re not the only canadian .
+856 |0.0000| you are big . | you re big .
+978 |0.0000| we re part of the team . | we are in the same team .
+1100|0.0000| i m at tom s house . | i m now here .
+1222|0.0000| she <unk> him with a <unk> . | she sued him .
+1224|0.0000| you re out of time . | i m <unk> .
+Epoch 14/20
+ - 61s - loss: 0.6466
+Validation Set BLEU: 0.486433
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re welcome . | you re welcome .
+124 |1.0000| you re first . | you re first .
+246 |1.0000| they re all on vacation . | they re all on vacation .
+368 |1.0000| i m not ready for this . | i m not ready for this .
+490 |1.0000| he s so cute . | he s so cute .
+612 |0.4889| i m sorry i misunderstood you . | i m sorry i hurt you .
+734 |0.0000| he s a grown man . | he s a man .
+856 |0.0000| you re safe . | you re fascinating .
+978 |0.0000| she is a blonde girl . | she s a real girl .
+1100|0.0000| she is nothing but a child . | she is no ordinary friend .
+1222|0.0000| i m good at playing the piano . | he s a bit of forty .
+1224|0.0000| you are <unk> for the debt . | you re <unk> .
+Epoch 15/20
+ - 65s - loss: 0.5952
+Validation Set BLEU: 0.501569
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re welcome . | you re welcome .
+124 |1.0000| you re free to go . | you re free to go .
+246 |1.0000| they re different . | they re different .
+368 |1.0000| i m not sleepy . | i m not sleepy .
+490 |1.0000| i m <unk> . | i m <unk> .
+612 |0.5373| i am bored to death . | i m bored to death .
+734 |0.0000| he is studying <unk> . | he s studying <unk> .
+856 |0.0000| i am sure that he will succeed . | i am sure of her success .
+978 |0.0000| they aren t alone . | they re not alone .
+1100|0.0000| i m beginning to get curious . | i m going to <unk> it a <unk> .
+1222|0.0000| you are right in a way . | you re right .
+1224|0.0000| he is <unk> of <unk> feeling . | he s <unk> .
+Epoch 16/20
+ - 68s - loss: 0.5548
+Validation Set BLEU: 0.538420
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re welcome . | you re welcome .
+124 |1.0000| you re greedy . | you re greedy .
+246 |1.0000| we are faced with a host of problems . | we are faced with a host of problems .
+368 |1.0000| i m so hungry . | i m so hungry .
+490 |1.0000| i m fascinated by cats . | i m fascinated by cats .
+612 |0.6435| he s afraid of making mistakes . | he is afraid of making mistakes .
+734 |0.0000| i m sorry about last night . | i m sorry for last night .
+856 |0.0000| i m not arguing . | i m not going to <unk> .
+978 |0.0000| i m innocent . | i m <unk> .
+1100|0.0000| i am going to get dressed . | i m going to take my <unk> .
+1222|0.0000| we re hoping to open in october . | we are having a blast .
+1224|0.0000| we are badly in want of water . | we re really angry .
+Epoch 17/20
+ - 62s - loss: 0.5136
+Validation Set BLEU: 0.550935
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re with friends . | you re with friends .
+124 |1.0000| you re joking ! | you re joking !
+246 |1.0000| they re still not safe . | they re still not safe .
+368 |1.0000| i m sorry i yelled at you . | i m sorry i yelled at you .
+490 |1.0000| i m giving my old books away . | i m giving my old books away .
+612 |0.6435| you re too young to <unk> . | you re too young to travel .
+734 |0.3656| i m sure that s wrong . | i m sure that you will facts .
+856 |0.0000| she <unk> him with a <unk> . | she sent him a <unk> .
+978 |0.0000| i m introverted . | i m <unk> .
+1100|0.0000| she is in a green dress . | she is wearing a <unk> .
+1222|0.0000| you are trusted by every one of us . | you re free to go .
+1224|0.0000| i m good at playing the piano . | he s after me .
+Epoch 18/20
+ - 60s - loss: 0.4807
+Validation Set BLEU: 0.577269
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re welcome . | you re welcome .
+124 |1.0000| you re joking ! | you re joking !
+246 |1.0000| we re all having lunch . | we re all having lunch .
+368 |1.0000| i m too old for tom . | i m too old for tom .
+490 |1.0000| i m interested in your work . | i m interested in your work .
+612 |1.0000| he s a <unk> . | he s a <unk> .
+734 |0.4548| i m thinking of the plan . | i m thinking of resigning .
+856 |0.0000| i m always losing my keys . | i m <unk> my keys .
+978 |0.0000| they re broke . | they re <unk> .
+1100|0.0000| she is an <unk> cook . | she is fit for the world .
+1222|0.0000| we re hoping to open in october . | we are having a blast .
+1224|0.0000| you are trusted by every one of us . | you re free to go .
+Epoch 19/20
+ - 60s - loss: 0.4473
+Validation Set BLEU: 0.591001
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re welcome . | you re welcome .
+124 |1.0000| you re in big trouble . | you re in big trouble .
+246 |1.0000| we re <unk> . | we re <unk> .
+368 |1.0000| i m tired of dancing . | i m tired of dancing .
+490 |1.0000| i m lonely . | i m lonely .
+612 |1.0000| he s no saint . | he s no saint .
+734 |0.5115| you re running out of options . | you re out of options .
+856 |0.0000| you re a little weird . | you re a terrible person .
+978 |0.0000| we re powerless . | we re <unk> .
+1100|0.0000| he is having lunch . | he is eating .
+1222|0.0000| you are trusted by every one of us . | you re free to go .
+1224|0.0000| we are badly in want of water . | we re really angry .
+Epoch 20/20
+ - 58s - loss: 0.4218
+Validation Set BLEU: 0.624767
+Top | BLEU | target               | output              
+0   |1.0000| you re young . | you re young .
+1   |1.0000| you re worried aren t you ? | you re worried aren t you ?
+2   |1.0000| you re with friends . | you re with friends .
+124 |1.0000| you re just like your mother . | you re just like your mother .
+246 |1.0000| we re all having lunch . | we re all having lunch .
+368 |1.0000| i m very grateful for your help . | i m very grateful for your help .
+490 |1.0000| i m not buying your story . | i m not buying your story .
+612 |1.0000| i m <unk> you to leave <unk> . | i m <unk> you to leave <unk> .
+734 |0.6102| i m getting too old for this job . | i m getting old for this job .
+856 |0.0000| i m not crazy . | i m not insane .
+978 |0.0000| we re quite alone . | we re all alone .
+1100|0.0000| i m <unk> for tom . | i m doing tom s waiting .
+1222|0.0000| you are right in a way . | you re right .
+1224|0.0000| i am at the end of my patience . | i m in boston .
+>>> 
